@@ -445,6 +445,39 @@ html.js .reveal--pop.in{
 
 #confetti{position:fixed;inset:0;z-index:70;pointer-events:none}
 
+/* 눌러봐 → 뾰로롱 나타나는 폴라로이드 */
+.memory{
+  position:absolute;
+  left:50%;top:37%;
+  width:min(52vw,250px);
+  transform:translate(-50%,-50%) rotate(18deg) scale(0);
+  opacity:0;
+  z-index:5;
+  background:#fffdf3;
+  border:2.5px solid var(--ink);
+  border-radius:6px;
+  padding:10px 10px 44px;
+  box-shadow:6px 8px 0 -1px rgba(33,30,25,.25);
+  pointer-events:none;
+}
+.memory img{display:block;width:100%;height:auto;border-radius:3px}
+.memory .cap{
+  position:absolute;bottom:6px;left:0;right:0;
+  text-align:center;
+  font-family:'Nanum Brush Script',cursive;
+  font-size:clamp(19px,4.6vw,24px);
+  line-height:1.3;
+}
+.memory.show{animation:pyororong .9s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes pyororong{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(18deg) scale(0)}
+  62%{opacity:1;transform:translate(-50%,-50%) rotate(-8deg) scale(1.07)}
+  100%{opacity:1;transform:translate(-50%,-50%) rotate(-5deg) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){
+  .memory.show{animation:none;opacity:1;transform:translate(-50%,-50%) rotate(-5deg) scale(1)}
+}
+
 /* 스크롤 유도 화살표 */
 .down-hint{
   position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
@@ -759,6 +792,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <p class="from reveal reveal-unit" style="--d:.35s">from. 최어진</p>
     <button id="bloom-btn" class="reveal" style="--d:.6s" type="button">🌺 눌러봐</button>
 
+    <div class="memory" id="memory">
+      <img src="couple.jpg" alt="우성민과 최어진" width="750" height="1000" loading="lazy">
+      <p class="cap">우성민 ♥ 최어진</p>
+    </div>
+
   </section>
 </main>
 
@@ -808,7 +846,7 @@ function sizeCanvas(){
 sizeCanvas();
 addEventListener('resize', sizeCanvas);
 
-const PASTELS = ['#e8b4c8','#c9a8dc','#a8cbb7','#f0d8a8','#211e19'];
+const PASTELS = ['#e8b4c8','#f2c7d5','#c9a8dc','#a8cbb7','#211e19'];
 let parts = [], raf = null;
 
 function drawPetal(p){
@@ -827,8 +865,11 @@ function drawPetal(p){
     ctx.quadraticCurveTo(-s*.12,-s*.12, 0,-s);
     ctx.fill();
   }else{
+    const s = p.size;
     ctx.beginPath();
-    ctx.ellipse(0,0,p.size*.55,p.size,0,0,Math.PI*2);
+    ctx.moveTo(0, s*.38);
+    ctx.bezierCurveTo(-s, -s*.25, -s*.45, -s*.95, 0, -s*.32);
+    ctx.bezierCurveTo(s*.45, -s*.95, s, -s*.25, 0, s*.38);
     ctx.fill();
   }
   ctx.restore();
@@ -857,15 +898,19 @@ function burst(x,y){
       size:(4+Math.random()*7)*dpr,
       rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.25,
       color:PASTELS[Math.random()*PASTELS.length|0],
-      kind:Math.random()<.22 ? 'star' : 'petal',
+      kind:Math.random()<.18 ? 'star' : 'heart',
       life:1, ph:Math.random()*7
     });
   }
   if(!raf) raf = requestAnimationFrame(tick);
 }
+const memory = document.getElementById('memory');
 document.getElementById('bloom-btn').addEventListener('click', e=>{
   const r = e.currentTarget.getBoundingClientRect();
   burst(r.left+r.width/2, r.top+r.height/2);
+  memory.classList.remove('show');
+  void memory.offsetWidth;
+  memory.classList.add('show');
 });
 </script>
 </body>
