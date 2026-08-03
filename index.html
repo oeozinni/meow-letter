@@ -245,80 +245,115 @@ html.js .reveal--pop.in{
    ============================================================ */
 .panel--blue{background:var(--blue)}
 .cover{
-  justify-content:flex-start;
-  padding-top:clamp(40px,7vh,84px);
-  padding-bottom:clamp(28px,5vh,56px);
   min-height:100svh;
+  justify-content:center;
+  padding:clamp(20px,4vh,48px) clamp(18px,4vw,52px) clamp(34px,6vh,60px);
 }
-.cover-inner{
-  width:100%;
-  max-width:1080px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
+/* Figma 원본(1372×1107) 좌표를 %로 환산한 포스터 캔버스 */
+.cover-canvas{
+  position:relative;
+  width:min(100%, calc((100svh - 110px)*1.2394), 1372px);
+  aspect-ratio:1372/1107;
+  container-type:inline-size;
 }
-.cover-title{
+.cw{
+  position:absolute;
   font-family:'Archivo','BookkGothic',sans-serif;
   font-weight:400;
-  letter-spacing:-.015em;
-  line-height:1.12;
-  font-size:clamp(42px,9.5vw,100px);
+  font-size:8.6cqw;
+  line-height:1.1;
+  letter-spacing:-.01em;
+  white-space:nowrap;
   color:var(--ink);
 }
-.cover-title>span{display:block}
-.cover-title .ct-l1{display:flex;justify-content:space-between;max-width:78%}
-.cover-title .ct-l2{text-align:right;padding-right:5%;margin-top:clamp(4px,1.2vh,14px)}
-.cover-title .ct-l3{text-align:right;margin-top:clamp(4px,1.2vh,14px)}
-.polaroid{
-  position:relative;
-  left:clamp(12px,6vw,70px);
-  width:min(62vw,300px);
-  margin:clamp(26px,6vh,60px) auto 0;
-}
-.polaroid img{
-  display:block;
-  width:100%;height:auto;
-  border-radius:18px;
-}
-.bubble{
+.cw-row{position:static}
+.cw-woo{left:4.82%;top:5.44%}
+.cw-sung{left:29.38%;top:5.44%}
+.cw-min{left:58.93%;top:5.44%}
+.cw-b{right:8.67%;top:22.61%}
+.cw-p{right:4.78%;top:36.94%}
+.cpolaroid{
   position:absolute;
-  left:-31%;
-  top:-15%;
-  width:92%;
+  left:27.93%;top:41.61%;width:24.89%;
+  container-type:inline-size;
+}
+.cpolaroid img{display:block;width:100%;height:auto;border-radius:7%/5.4%}
+.cbubble{
+  position:absolute;
+  left:-80.9%;top:-11.6%;
+  width:98.5%;height:29.1%;
   background:var(--bubble);
   border-radius:50%;
-  padding:clamp(14px,4vw,22px) clamp(12px,3.4vw,20px) clamp(16px,4.4vw,24px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;
-  font-size:clamp(10.5px,2.6vw,13.5px);
-  line-height:1.75;
-  letter-spacing:.04em;
+  font-size:max(4.2cqw,9px);
+  line-height:1.8;
+  letter-spacing:.01em;
   color:var(--ink);
   z-index:2;
 }
-.bubble .tail{
+.cbubble .ctail{
   position:absolute;
-  right:-9%;
-  bottom:-34%;
-  width:34%;
+  left:82%;top:76%;
+  width:29%;
   color:var(--bubble);
 }
-.cover-date{
+.cdate{
+  position:absolute;
+  right:4.8%;top:68.87%;
   font-family:'BookkMyungjo',serif;
   font-weight:700;
-  text-align:right;
-  font-size:clamp(24px,5.4vw,42px);
-  margin-top:clamp(22px,5vh,54px);
+  font-size:4.1cqw;
+  line-height:1;
 }
-.cover-foot{
-  margin-top:auto;
-  padding-top:clamp(26px,5vh,60px);
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:16px;
+.cfoot{
+  position:absolute;
   font-family:'BookkMyungjo',serif;
   font-weight:700;
-  font-size:clamp(13.5px,3.4vw,22px);
+  font-size:2.9cqw;
+  line-height:1;
+  white-space:nowrap;
+}
+.cfoot-a{left:4.82%;top:92.68%}
+.cfoot-s{right:5.1%;top:91.95%}
+.cfoot-row{position:static}
+
+/* 모바일: 원본의 배치 관계(계단식 헤드라인, 사진 좌상단의 말풍선)를 세로형으로 유지 */
+@media (max-width:639px){
+  .cover-canvas{
+    width:100%;
+    aspect-ratio:auto;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding-top:4vh;
+  }
+  .cw{position:static;font-size:10.5vw}
+  .cw-row{display:flex;justify-content:space-between;max-width:82%}
+  .cw-b{align-self:flex-end;padding-right:5%;margin-top:8px}
+  .cw-p{align-self:flex-end;margin-top:8px}
+  .cpolaroid{
+    position:relative;
+    left:16vw;top:auto;
+    width:56vw;
+    margin:clamp(44px,9vh,90px) auto 0;
+  }
+  .cbubble{left:-64%;top:-14%}
+  .cdate{
+    position:static;
+    align-self:flex-end;
+    margin-top:clamp(30px,6vh,64px);
+    font-size:clamp(24px,6.4vw,40px);
+  }
+  .cfoot-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    margin-top:auto;
+    padding-top:38px;
+  }
+  .cfoot{position:static;font-size:clamp(13.5px,3.6vw,18px)}
 }
 
 /* ============================================================
@@ -605,29 +640,31 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <main>
   <!-- ==================== 표지 (키비주얼) ==================== -->
   <section class="panel panel--blue cover" id="cover">
-    <div class="cover-inner">
-      <h1 class="cover-title">
-        <span class="ct-l1 reveal"><span>Woo</span><span>Sung</span><span>Min</span></span>
-        <span class="ct-l2 reveal" style="--d:.18s">Birthday</span>
-        <span class="ct-l3 reveal" style="--d:.36s">Party</span>
-      </h1>
+    <div class="cover-canvas">
+      <div class="cw-row">
+        <span class="cw cw-woo reveal">Woo</span>
+        <span class="cw cw-sung reveal" style="--d:.08s">Sung</span>
+        <span class="cw cw-min reveal" style="--d:.16s">Min</span>
+      </div>
+      <span class="cw cw-b reveal" style="--d:.3s">Birthday</span>
+      <span class="cw cw-p reveal" style="--d:.45s">Party</span>
 
-      <div class="polaroid reveal" style="--d:.55s">
+      <div class="cpolaroid reveal" style="--d:.6s">
         <img src="photo.jpg" alt="우성민 증명사진" width="514" height="680">
-        <div class="bubble reveal--pop" style="--d:1s">
-          <p>✧&ensp;♥&ensp;∞&ensp; 우성민 학생 &ensp;∞&ensp;♥&ensp;✧</p>
-          <p>*&emsp;☆·₊°*&emsp;☆·₊</p>
+        <div class="cbubble reveal--pop" style="--d:1.05s">
+          <p>✧༺♥༻∞　우성민 학생　∞༺♥༻✧</p>
+          <p>* ੈ✩‧₊˚* ੈ✩‧₊</p>
           <p>생일 축하 합니다</p>
-          <p>°₊·'*♡*'·₊°</p>
-          <svg class="tail" viewBox="0 0 60 60" aria-hidden="true"><path d="M4 2 C22 14 34 30 40 52 L2 26 Z" fill="currentColor"/></svg>
+          <p>°₊·ˈ∗♡∗ˈ‧₊°</p>
+          <svg class="ctail" viewBox="0 0 60 60" aria-hidden="true"><path d="M4 2 C22 14 34 30 40 52 L2 26 Z" fill="currentColor"/></svg>
         </div>
       </div>
 
-      <p class="cover-date reveal" style="--d:.7s">26.08.04</p>
+      <span class="cdate reveal" style="--d:.75s">26.08.04</span>
 
-      <div class="cover-foot">
-        <span class="reveal" style="--d:.85s">Arranged by. Choi Eojin</span>
-        <span class="reveal" style="--d:1s">Seoul, Korea</span>
+      <div class="cfoot-row">
+        <span class="cfoot cfoot-a reveal" style="--d:.9s">Arranged by. Choi Eojin</span>
+        <span class="cfoot cfoot-s reveal" style="--d:1.05s">Seoul, Korea</span>
       </div>
     </div>
     <div class="doodle down-hint" style="bottom:10px"><svg viewBox="0 0 22 30"><use href="#arrow-down"/></svg></div>
