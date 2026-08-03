@@ -190,6 +190,7 @@ html.js .reveal--pop.in{
   background:#fffdf3;
   border:2px solid var(--ink);
   border-radius:4px;
+  z-index:1;
   transition:transform .9s cubic-bezier(.16,1,.3,1) .35s;
   display:flex;align-items:center;justify-content:center;
   font-family:'Nanum Brush Script',cursive;
@@ -202,6 +203,7 @@ html.js .reveal--pop.in{
   border:2.5px solid var(--ink);
   border-radius:6px;
   clip-path:polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+  z-index:3;
 }
 /* 뚜껑 */
 .env-flap{
@@ -212,18 +214,18 @@ html.js .reveal--pop.in{
   clip-path:polygon(0 0,100% 0,50% 100%);
   transform-origin:top center;
   transition:transform .7s cubic-bezier(.16,1,.3,1);
-  z-index:3;
+  z-index:4;
 }
 .env-seal{
   position:absolute;left:50%;top:50%;
   transform:translate(-50%,-18%);
   width:52px;height:52px;
-  z-index:4;
+  z-index:5;
   transition:opacity .3s, transform .5s;
 }
-#intro.open .env-flap{transform:rotateX(178deg);z-index:1}
+#intro.open .env-flap{transform:rotateX(178deg);z-index:0}
 #intro.open .env-seal{opacity:0;transform:translate(-50%,-18%) scale(.5) rotate(40deg)}
-#intro.open .env-letter{transform:translateY(-46%) rotate(-2deg)}
+#intro.open .env-letter{transform:translateY(-46%) rotate(-2deg);z-index:2}
 .env-cat{
   position:absolute;
   width:92px;
