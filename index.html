@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Grenze+Gotisch:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Grenze+Gotisch:wght@400;500;600&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    부크크 고딕 (눈누 무료 폰트, jsdelivr CDN)
@@ -24,7 +24,15 @@
   font-weight:700; font-display:swap;
 }
 
+@font-face{
+  font-family:'BookkMyungjo';
+  src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-weight:700; font-display:swap;
+}
+
 :root{
+  --blue:#a2bbd9;
+  --bubble:#dce3ec;
   --sage:#d8dcc2;
   --sage-deep:#cdd2b4;
   --mint:#dcebe2;
@@ -34,7 +42,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-anchor:none}
 body{
   font-family:'BookkGothic','Apple SD Gothic Neo',sans-serif;
   font-weight:300;
@@ -112,21 +120,27 @@ body::after{
   font-weight:400;
   line-height:1.15;
 }
+/* 명조 디스플레이 (우성민 고양이 · 따랑해) */
+.myungjo{
+  font-family:'BookkMyungjo','Apple SD Gothic Neo',serif;
+  font-weight:700;
+  line-height:1.22;
+}
 
 /* ============================================================
    스크롤 리빌 — 엔터마다 한 번씩
    ============================================================ */
-html.js .reveal{opacity:0;transform:translateY(30px);filter:blur(6px)}
+html.js .reveal{opacity:0;transform:translateY(30px);filter:blur(3px)}
 html.js .reveal.in{
   opacity:1;transform:none;filter:blur(0);
   transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1), filter 1s cubic-bezier(.16,1,.3,1);
   transition-delay:var(--d,0s);
 }
 /* 도장 찍히듯 (제목·따랑해) */
-html.js .reveal--stamp{opacity:0;transform:scale(1.28) rotate(-2deg);filter:blur(10px)}
+html.js .reveal--stamp{opacity:0;transform:scale(1.28) rotate(-2deg)}
 html.js .reveal--stamp.in{
-  opacity:1;transform:scale(1) rotate(0);filter:blur(0);
-  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s cubic-bezier(.16,1,.3,1);
+  opacity:1;transform:scale(1) rotate(0);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
   transition-delay:var(--d,0s);
 }
 /* 폴짝 등장 (도장·꽃) */
@@ -246,13 +260,93 @@ html.js .reveal--pop.in{
 .intro-stars2{position:absolute;width:70px;right:10%;bottom:14%}
 
 /* ============================================================
-   1. 타이틀 포스터 (Charmer 오마주)
+   1. 표지 (키비주얼 — Birthday Party 포스터)
+   ============================================================ */
+.panel--blue{background:var(--blue)}
+.cover{
+  justify-content:flex-start;
+  padding-top:clamp(40px,7vh,84px);
+  padding-bottom:clamp(28px,5vh,56px);
+  min-height:100svh;
+}
+.cover-inner{
+  width:100%;
+  max-width:1080px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+.cover-title{
+  font-family:'Archivo','BookkGothic',sans-serif;
+  font-weight:400;
+  letter-spacing:-.015em;
+  line-height:1.12;
+  font-size:clamp(42px,9.5vw,100px);
+  color:var(--ink);
+}
+.cover-title>span{display:block}
+.cover-title .ct-l1{display:flex;justify-content:space-between;max-width:78%}
+.cover-title .ct-l2{text-align:right;padding-right:5%;margin-top:clamp(4px,1.2vh,14px)}
+.cover-title .ct-l3{text-align:right;margin-top:clamp(4px,1.2vh,14px)}
+.polaroid{
+  position:relative;
+  left:clamp(12px,6vw,70px);
+  width:min(62vw,300px);
+  margin:clamp(26px,6vh,60px) auto 0;
+}
+.polaroid img{
+  display:block;
+  width:100%;height:auto;
+  border-radius:18px;
+}
+.bubble{
+  position:absolute;
+  left:-31%;
+  top:-15%;
+  width:92%;
+  background:var(--bubble);
+  border-radius:50%;
+  padding:clamp(14px,4vw,22px) clamp(12px,3.4vw,20px) clamp(16px,4.4vw,24px);
+  text-align:center;
+  font-size:clamp(10.5px,2.6vw,13.5px);
+  line-height:1.75;
+  letter-spacing:.04em;
+  color:var(--ink);
+  z-index:2;
+}
+.bubble .tail{
+  position:absolute;
+  right:-9%;
+  bottom:-34%;
+  width:34%;
+  color:var(--bubble);
+}
+.cover-date{
+  font-family:'BookkMyungjo',serif;
+  font-weight:700;
+  text-align:right;
+  font-size:clamp(24px,5.4vw,42px);
+  margin-top:clamp(22px,5vh,54px);
+}
+.cover-foot{
+  margin-top:auto;
+  padding-top:clamp(26px,5vh,60px);
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:16px;
+  font-family:'BookkMyungjo',serif;
+  font-weight:700;
+  font-size:clamp(13.5px,3.4vw,22px);
+}
+
+/* ============================================================
+   2. 타이틀 포스터 (Charmer 오마주)
    ============================================================ */
 .title-panel .big-title{
-  font-size:clamp(64px,17vw,150px);
-  transform:rotate(-7deg);
+  font-size:clamp(52px,13vw,118px);
+  transform:rotate(-4deg);
   text-align:center;
-  line-height:1.05;
   margin:10px 0 6px;
 }
 .title-panel .sub-eng{
@@ -288,9 +382,8 @@ html.js .reveal--pop.in{
    피날레
    ============================================================ */
 .finale .big-love{
-  font-size:clamp(78px,20vw,170px);
-  transform:rotate(-5deg);
-  line-height:1;
+  font-size:clamp(60px,15vw,140px);
+  transform:rotate(-3deg);
 }
 .finale .from{
   font-family:'Grenze Gotisch',serif;
@@ -529,6 +622,36 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 </div>
 
 <main>
+  <!-- ==================== 표지 (키비주얼) ==================== -->
+  <section class="panel panel--blue cover" id="cover">
+    <div class="cover-inner">
+      <h1 class="cover-title">
+        <span class="ct-l1 reveal"><span>Woo</span><span>Sung</span><span>Min</span></span>
+        <span class="ct-l2 reveal" style="--d:.18s">Birthday</span>
+        <span class="ct-l3 reveal" style="--d:.36s">Party</span>
+      </h1>
+
+      <div class="polaroid reveal" style="--d:.55s">
+        <img src="photo.jpg" alt="우성민 증명사진" width="514" height="680">
+        <div class="bubble reveal--pop" style="--d:1s">
+          <p>✧&ensp;♥&ensp;∞&ensp; 우성민 학생 &ensp;∞&ensp;♥&ensp;✧</p>
+          <p>*&emsp;☆·₊°*&emsp;☆·₊</p>
+          <p>생일 축하 합니다</p>
+          <p>°₊·'*♡*'·₊°</p>
+          <svg class="tail" viewBox="0 0 60 60" aria-hidden="true"><path d="M4 2 C22 14 34 30 40 52 L2 26 Z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <p class="cover-date reveal" style="--d:.7s">26.08.04</p>
+
+      <div class="cover-foot">
+        <span class="reveal" style="--d:.85s">Arranged by. Choi Eojin</span>
+        <span class="reveal" style="--d:1s">Seoul, Korea</span>
+      </div>
+    </div>
+    <div class="doodle down-hint" style="bottom:10px"><svg viewBox="0 0 22 30"><use href="#arrow-down"/></svg></div>
+  </section>
+
   <!-- ==================== 1. 타이틀 ==================== -->
   <section class="panel panel--sage title-panel">
     <div class="doodle groom-cat reveal" style="--d:.25s"><svg viewBox="0 0 100 100"><use href="#cat-groom"/></svg></div>
@@ -540,7 +663,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </svg></div>
     <div class="doodle title-star-r"><svg viewBox="0 0 64 64"><g class="twinkle t3"><use href="#star4" transform="translate(8 8) scale(2)"/></g></svg></div>
 
-    <h1 class="brush big-title reveal--stamp reveal-unit">우성민<br>고양이</h1>
+    <h2 class="myungjo big-title reveal--stamp reveal-unit">우성민<br>고양이</h2>
     <p class="sub-eng reveal reveal-unit" style="--d:.35s">happy birthday to you</p>
 
     <div class="doodle bunny wiggle reveal--pop" style="--d:.5s"><svg viewBox="0 0 100 96"><use href="#bunny"/></svg></div>
@@ -621,7 +744,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="float-cat" style="top:34%"><svg viewBox="0 0 100 84"><use href="#cat-fly"/></svg></div>
     <div class="float-cat fc2"><svg viewBox="0 0 100 84"><use href="#cat-fly" transform="translate(100 0) scale(-1 1)"/></svg></div>
 
-    <h2 class="brush big-love reveal--stamp reveal-unit">따랑해</h2>
+    <h2 class="myungjo big-love reveal--stamp reveal-unit">따랑해</h2>
     <p class="from reveal reveal-unit" style="--d:.35s">from. 이언지</p>
     <button id="bloom-btn" class="reveal" style="--d:.6s" type="button">🌺 눌러봐</button>
 
@@ -644,6 +767,7 @@ function openLetter(){
   setTimeout(()=>{
     intro.classList.add('gone');
     document.body.classList.remove('locked');
+    coverEls.forEach(el=>io.observe(el));
   }, reduced ? 100 : 1050);
 }
 intro.addEventListener('click', openLetter);
@@ -655,7 +779,10 @@ const io = new IntersectionObserver(entries=>{
     if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   }
 },{threshold:.15, rootMargin:'0px 0px -4% 0px'});
-document.querySelectorAll('.reveal,.reveal--stamp,.reveal--pop').forEach(el=>io.observe(el));
+/* 표지 리빌은 봉투가 열린 뒤에 시작 */
+const allReveals = [...document.querySelectorAll('.reveal,.reveal--stamp,.reveal--pop')];
+const coverEls = allReveals.filter(el=>el.closest('#cover'));
+allReveals.filter(el=>!el.closest('#cover')).forEach(el=>io.observe(el));
 
 /* ---------- 꽃 폭죽 ---------- */
 const canvas = document.getElementById('confetti');
