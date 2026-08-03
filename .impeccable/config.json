@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.34, 1.56, .64, 1)",
+        "createdAt": "2026-08-03T17:08:31.211Z",
+        "reason": "User confirmed bounce easing is intentional (cute pop entrances)"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.34,1.56,.64,1)",
+        "createdAt": "2026-08-03T17:08:31.490Z",
+        "reason": "User confirmed bounce easing is intentional (cute pop entrances)"
+      }
+    ]
+  }
+}
