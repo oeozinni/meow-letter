@@ -285,26 +285,12 @@ html.js .reveal--pop.in{
   left:27.93%;top:41.61%;width:24.89%;
   container-type:inline-size;
 }
-.cpolaroid img{display:block;width:100%;height:auto;border-radius:7%/5.4%}
+.cpolaroid .cphoto{display:block;width:100%;height:auto}
 .cbubble{
   position:absolute;
   left:-80.9%;top:-11.6%;
-  width:98.5%;height:29.1%;
-  background:var(--bubble);
-  border-radius:50%;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;
-  font-size:max(4.2cqw,9px);
-  line-height:1.8;
-  letter-spacing:.01em;
-  color:var(--ink);
+  width:98.5%;height:auto;
   z-index:2;
-}
-.cbubble .ctail{
-  position:absolute;
-  left:82%;top:76%;
-  width:29%;
-  color:var(--bubble);
 }
 .cdate{
   position:absolute;
@@ -694,14 +680,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <span class="cw cw-p reveal" style="--d:.45s">Party</span>
 
       <div class="cpolaroid reveal" style="--d:.6s">
-        <img src="photo.jpg" alt="우성민 증명사진" width="514" height="680">
-        <div class="cbubble reveal--pop" style="--d:1.05s">
-          <p>✧༺♥༻∞　우성민 학생　∞༺♥༻✧</p>
-          <p>* ੈ✩‧₊˚* ੈ✩‧₊</p>
-          <p>생일 축하 합니다</p>
-          <p>°₊·ˈ∗♡∗ˈ‧₊°</p>
-          <svg class="ctail" viewBox="0 0 60 60" aria-hidden="true"><path d="M4 2 C22 14 34 30 40 52 L2 26 Z" fill="currentColor"/></svg>
-        </div>
+        <img class="cphoto" src="photo.png" alt="우성민 증명사진" width="683" height="892">
+        <img class="cbubble reveal--pop" style="--d:1.05s" src="bubble.png" alt="우성민 학생 생일 축하 합니다" width="673" height="325">
       </div>
 
       <span class="cdate reveal" style="--d:.75s">26.08.04</span>
